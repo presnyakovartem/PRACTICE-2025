@@ -1,0 +1,2 @@
+/usr/bin/ar qc dist/components/libdentobase_cache.a CMakeFiles/dentobase_cache.dir/dentobase_cache_autogen/mocs_compilation.cpp.o CMakeFiles/dentobase_cache.dir/src/cache/RedisCache.cpp.o
+/usr/bin/ranlib dist/components/libdentobase_cache.a

@@ -1,0 +1,23 @@
+\include{preambula}
+
+\begin{document}
+	\includepdf{title.pdf}
+	\setcounter{page}{3}
+	
+	\include{annotation}
+	
+	\def\contentsname{\vspace{-2cm}\large\begin{center}СОДЕРЖАНИЕ\end{center}}
+	\tableofcontents
+	
+	\include{intro}
+	\include{analytic_part}
+	\include{design_part}
+	\include{tech_part}
+	\include{experimental_part}
+	\include{conclusion}
+	
+	\def\bibname{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+	\include{links}
+	
+	\include{addition_a}
+\end{document}

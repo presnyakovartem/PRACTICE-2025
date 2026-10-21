@@ -1,0 +1,13 @@
+[2026-05-28 15:37:33.655] [info] DentoBase GUI application started
+[2026-05-28 15:37:33.655] [info] Config file: config/doctor.conf
+[2026-05-28 15:37:33.655] [info] Log file: logs/doctor.log
+[2026-05-28 15:37:33.655] [info] Logging mode from config: release
+[2026-05-28 15:37:33.663] [info] Connected to PostgreSQL
+[2026-05-28 15:37:33.664] [info] Connected to Redis cache
+[2026-05-28 15:37:33.664] [info] Connected to Redis
+[2026-05-28 15:37:33.678] [info] Qt GUI started
+[2026-05-28 15:41:05.659] [info] User action: create doctor
+[2026-05-28 15:41:05.663] [error] createDoctor failed: ERROR:  permission denied for table doctors
+
+[2026-05-28 15:41:05.664] [error] Создание врача failed: ERROR:  permission denied for table doctors
+

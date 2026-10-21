@@ -1,0 +1,15 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(admin, "Администратор", "Управляет системой и пользователями")
+Person(doctor, "Врач-стоматолог", "Анализирует снимки, ставит диагнозы")
+Person(tech, "Рентгенолог", "Загружает снимки в систему")
+
+System(dentobase, "DentoBase", "ИС для хранения и обработки стоматологических снимков")
+
+Rel(admin, dentobase, "Управляет справочниками и пользователями")
+Rel(doctor, dentobase, "Просматривает снимки и заключения")
+Rel(tech, dentobase, "Загружает данные исследований")
+@enduml

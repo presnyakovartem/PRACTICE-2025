@@ -1,0 +1,2 @@
+/usr/bin/ar qc dist/components/libdentobase_gui.a CMakeFiles/dentobase_gui.dir/dentobase_gui_autogen/mocs_compilation.cpp.o CMakeFiles/dentobase_gui.dir/src/gui/MainWindow.cpp.o
+/usr/bin/ranlib dist/components/libdentobase_gui.a

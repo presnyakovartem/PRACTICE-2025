@@ -1,0 +1,12 @@
+[2026-05-26 03:23:57.960] [info] DentoBase GUI application started
+[2026-05-26 03:23:57.961] [info] Config file: config/admin.conf
+[2026-05-26 03:23:57.961] [info] Log file: logs/admin.log
+[2026-05-26 03:23:57.961] [info] Logging mode from config: debug
+[2026-05-26 03:23:57.966] [info] Connected to PostgreSQL
+[2026-05-26 03:23:57.966] [info] Connected to Redis cache
+[2026-05-26 03:23:57.966] [info] Connected to Redis
+[2026-05-26 03:23:57.976] [info] Qt GUI started
+[2026-05-26 03:25:46.332] [info] User action: find patient fcfd9e3a-fbc3-47bd-aca4-babbaa970339
+[2026-05-26 03:25:46.333] [info] Redis cache miss: patient:fcfd9e3a-fbc3-47bd-aca4-babbaa970339
+[2026-05-26 03:25:46.334] [info] Patient cached in Redis: patient:fcfd9e3a-fbc3-47bd-aca4-babbaa970339
+[2026-05-26 03:28:58.637] [info] DentoBase GUI application finished

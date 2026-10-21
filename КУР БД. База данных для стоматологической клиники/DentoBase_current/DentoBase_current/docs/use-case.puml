@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Врач" as doctor
+actor "Рентгенолог" as tech
+actor "Администратор" as admin
+
+rectangle "Система DentoBase" {
+  usecase "Поиск пациента" as UC_SearchPatient
+  usecase "Просмотр снимка" as UC_ViewImage
+  usecase "Добавление заключения" as UC_AddDiagnosis
+  usecase "Загрузка нового снимка" as UC_UploadImage
+  usecase "Управление пользователями" as UC_ManageUsers
+  usecase "Управление справочниками" as UC_ManageDicts
+}
+
+doctor --> UC_SearchPatient
+doctor --> UC_ViewImage
+doctor --> UC_AddDiagnosis
+
+tech --> UC_SearchPatient
+tech --> UC_UploadImage
+
+admin --> UC_ManageUsers
+admin --> UC_ManageDicts
+@enduml

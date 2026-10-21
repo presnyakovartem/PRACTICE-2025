@@ -1,0 +1,94 @@
+@startuml
+left to right direction
+skinparam linetype ortho
+skinparam shadowing false
+skinparam nodesep 40
+skinparam ranksep 50
+
+skinparam usecase {
+    BackgroundColor White
+    BorderColor Black
+}
+skinparam rectangle {
+    BackgroundColor White
+    BorderColor Black
+    FontStyle bold
+}
+skinparam hexagon {
+    BackgroundColor White
+    BorderColor Black
+}
+
+rectangle "Пациент" as Patient
+usecase "<u>ID_Пациента</u>" as p_id
+usecase "ФИО" as p_fio
+Patient - p_id
+Patient - p_fio
+
+rectangle "Снимок" as Image
+usecase "<u>ID_Снимка</u>" as i_id
+usecase "Дата" as i_date
+Image - i_id
+Image - i_date
+
+rectangle "Заключение" as Diagnosis
+usecase "<u>ID_Заключения</u>" as d_id
+usecase "Текст" as d_txt
+Diagnosis - d_id
+Diagnosis - d_txt
+
+rectangle "Врач" as Doctor
+usecase "<u>ID_Врача</u>" as doc_id
+usecase "Спец" as doc_spec
+Doctor - doc_id
+Doctor - doc_spec
+
+rectangle "Лаборант" as Tech
+usecase "<u>ID_Лаборанта</u>" as tech_id
+Tech - tech_id
+
+rectangle "Оборудование" as Equip
+usecase "<u>ID_Оборудования</u>" as eq_id
+usecase "Модель" as eq_model
+Equip - eq_id
+Equip - eq_model
+
+rectangle "Клиника" as Clinic
+usecase "<u>ID_Клиники</u>" as c_id
+usecase "Адрес" as c_adr
+Clinic - c_id
+Clinic - c_adr
+
+rectangle "Тип снимка" as Type
+usecase "<u>ID_Типа</u>" as t_id
+usecase "Название" as t_name
+Type - t_id
+Type - t_name
+
+hexagon "Имеет" as r_patient_image
+hexagon "Делает" as r_tech_image
+hexagon "Создает" as r_equip_image
+hexagon "Определяет" as r_type_image
+hexagon "Описывает" as r_image_diag
+hexagon "Пишет" as r_doc_diag
+hexagon "Содержит" as r_clinic_equip
+hexagon "Работает" as r_doc_clinic
+
+Patient "1" -- r_patient_image
+r_patient_image -- "N" Image
+Tech "1" -- r_tech_image
+r_tech_image -- "N" Image
+Equip "1" -- r_equip_image
+r_equip_image -- "N" Image
+Type "1" -- r_type_image
+r_type_image -- "N" Image
+Image "1" -- r_image_diag
+r_image_diag -- "1" Diagnosis
+Doctor "1" -- r_doc_diag
+r_doc_diag -- "N" Diagnosis
+Clinic "1" -- r_clinic_equip
+r_clinic_equip -- "N" Equip
+Doctor "N" -- r_doc_clinic
+r_doc_clinic -- "1" Clinic
+
+@enduml

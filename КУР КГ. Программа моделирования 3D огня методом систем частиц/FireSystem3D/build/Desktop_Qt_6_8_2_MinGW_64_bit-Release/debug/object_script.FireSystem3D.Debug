@@ -1,0 +1,10 @@
+debug/camera.o
+debug/firecanvas.o
+debug/light.o
+debug/main.o
+debug/mainwindow.o
+debug/particle.o
+debug/particlesystem.o
+debug/scene.o
+debug/moc_firecanvas.o
+debug/moc_mainwindow.o

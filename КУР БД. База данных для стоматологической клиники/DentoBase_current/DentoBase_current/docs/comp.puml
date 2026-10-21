@@ -1,0 +1,57 @@
+@startuml comp
+left to right direction
+skinparam shadowing false
+skinparam linetype ortho
+skinparam defaultFontName Arial
+skinparam packageStyle rectangle
+
+title C4 L3 - DentoBase components with Qt GUI
+
+actor "User" as User
+
+package "GUI component" {
+    component "Qt GUI\nMainWindow" as GUI
+}
+
+package "Application component" {
+    component "IApplicationService" as IApplicationService
+    component "ApplicationService" as ApplicationService
+}
+
+package "Business component" {
+    component "ImageService" as ImageService
+    component "DiagnosisService" as DiagnosisService
+}
+
+package "Data Access component" {
+    component "Repository Interfaces" as RepoInterfaces
+    component "PostgreSQL Repositories" as PgRepos
+    component "SQL Builders" as SqlBuilders
+}
+
+package "Infrastructure components" {
+    component "Config" as Config
+    component "Logger\nspdlog" as Logger
+    component "RedisCache\nhiredis" as RedisCache
+}
+
+database "PostgreSQL" as PostgreSQL
+database "Redis" as Redis
+
+User --> GUI
+GUI --> IApplicationService
+ApplicationService ..|> IApplicationService
+ApplicationService --> ImageService
+ApplicationService --> DiagnosisService
+ApplicationService --> RepoInterfaces
+ApplicationService --> Logger
+ApplicationService --> RedisCache
+ApplicationService --> Config
+ImageService --> RepoInterfaces
+DiagnosisService --> RepoInterfaces
+PgRepos ..> RepoInterfaces
+PgRepos --> SqlBuilders
+PgRepos --> PostgreSQL
+RedisCache --> Redis
+RedisCache --> Logger
+@enduml

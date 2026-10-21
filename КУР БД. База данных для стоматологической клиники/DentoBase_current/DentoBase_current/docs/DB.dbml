@@ -1,0 +1,58 @@
+// Диаграмма базы данных на основе ER-модели PlantUML
+
+Table Patient {
+  id int [pk, increment, note: 'ID_Пациента']
+  full_name varchar [not null, note: 'ФИО']
+}
+
+Table Image {
+  id int [pk, increment, note: 'ID_Снимка']
+  date datetime [not null, note: 'Дата']
+  patient_id int [not null, ref: > Patient.id, note: 'Связь: Пациент имеет много Снимков']
+  tech_id int [not null, ref: > Tech.id, note: 'Связь: Лаборант делает много Снимков']
+  equip_id int [not null, ref: > Equip.id, note: 'Связь: Оборудование создает много Снимков']
+  type_id int [not null, ref: > Type.id, note: 'Связь: Тип определяет много Снимков']
+}
+
+Table Diagnosis {
+  id int [pk, increment, note: 'ID_Заключения']
+  text text [not null, note: 'Текст']
+  image_id int [unique, not null, ref: > Image.id, note: 'Связь 1:1: Снимок описывается Заключением']
+  doctor_id int [not null, ref: > Doctor.id, note: 'Связь: Врач пишет много Заключений']
+}
+
+Table Doctor {
+  id int [pk, increment, note: 'ID_Врача']
+  specialty varchar [not null, note: 'Спец']
+  clinic_id int [not null, ref: > Clinic.id, note: 'Связь: Многие Врачи работают в одной Клинике']
+}
+
+Table Tech {
+  id int [pk, increment, note: 'ID_Лаборанта']
+}
+
+Table Equip {
+  id int [pk, increment, note: 'ID_Оборудования']
+  model varchar [not null, note: 'Модель']
+  clinic_id int [not null, ref: > Clinic.id, note: 'Связь: Клиника содержит много Оборудования']
+}
+
+Table Clinic {
+  id int [pk, increment, note: 'ID_Клиники']
+  address varchar [not null, note: 'Адрес']
+}
+
+Table Type {
+  id int [pk, increment, note: 'ID_Типа']
+  name varchar [not null, unique, note: 'Название']
+}
+
+// Примечания по связям:
+// - Patient (1) → Image (N) через patient_id
+// - Tech (1) → Image (N) через tech_id
+// - Equip (1) → Image (N) через equip_id
+// - Type (1) → Image (N) через type_id
+// - Image (1) → Diagnosis (1) через image_id (уникальный внешний ключ)
+// - Doctor (1) → Diagnosis (N) через doctor_id
+// - Clinic (1) → Equip (N) через clinic_id
+// - Clinic (1) → Doctor (N) через clinic_id

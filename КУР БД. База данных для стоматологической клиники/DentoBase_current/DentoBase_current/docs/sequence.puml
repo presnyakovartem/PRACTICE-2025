@@ -1,0 +1,46 @@
+@startuml
+autonumber
+
+actor "Рентгенолог" as tech
+participant "UI" as ui
+participant "ImageService" as service
+participant "IImageRepo" as repo
+database "Database" as db
+
+tech -> ui: Загружает новый снимок (файл, id пациента)
+activate ui
+ui -> service: createImage(file, patientId)
+activate service
+service -> repo: saveImageMetadata(meta)
+activate repo
+repo -> db: INSERT INTO images ...
+db --> repo: newImageId
+repo --> service: image
+deactivate repo
+service -> service: Сохранить файл снимка на диске
+service --> ui: Успех
+deactivate service
+ui --> tech: Снимок успешно загружен
+deactivate ui
+
+... Некоторое время спустя ...
+
+actor "Врач" as doc
+participant "DiagnosisService" as diag_service
+participant "IDiagnosisRepo" as diag_repo
+
+doc -> ui: Открывает снимок и пишет заключение
+activate ui
+ui -> diag_service: createDiagnosis(text, imageId, doctorId)
+activate diag_service
+diag_service -> diag_repo: add(new Diagnosis(...))
+activate diag_repo
+diag_repo -> db: INSERT INTO diagnoses ...
+db --> diag_repo:
+diag_repo --> diag_service:
+deactivate diag_repo
+diag_service --> ui: Успех
+deactivate diag_service
+ui --> doc: Заключение сохранено
+deactivate ui
+@enduml

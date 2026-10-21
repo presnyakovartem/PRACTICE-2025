@@ -1,0 +1,34 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+package "Domain Model" {
+    class Patient {
+        +int id
+        +string fullName
+        +date birthDate
+    }
+}
+
+package "Data Access Component" {
+    interface IPatientRepository {
+        +{abstract} Patient getById(int id)
+        +{abstract} void save(Patient patient)
+    }
+
+    class PostgresPatientRepository {
+        -Connection dbConnection
+        +Patient getById(int id)
+        +void save(Patient patient)
+    }
+
+    class PatientDTO {
+      +int patient_id
+      +string full_name
+      +date birth_date
+    }
+}
+
+PostgresPatientRepository ..|> IPatientRepository
+PostgresPatientRepository -> PatientDTO : "maps to/from"
+PostgresPatientRepository ..> Patient
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(admin, "Администратор")
+Person(doctor, "Врач-стоматолог")
+Person(tech, "Рентгенолог")
+
+System_Boundary(c1, "DentoBase") {
+    Container(app, "Desktop-приложение", "C++, Qt", "Основной интерфейс для работы со снимками и данными")
+    ContainerDb(db, "База данных", "PostgreSQL", "Хранение метаданных снимков, заключений, информации о пациентах и пользователях")
+}
+
+Rel(admin, app, "Использует", "GUI")
+Rel(doctor, app, "Использует", "GUI")
+Rel(tech, app, "Использует", "GUI")
+
+Rel(app, db, "Читает и записывает данные", "SQL/TCP")
+@enduml
